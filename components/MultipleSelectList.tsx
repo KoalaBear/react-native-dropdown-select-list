@@ -264,32 +264,20 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                                                         let sv = [...selectedval];
                                                         sv.splice(existing,1)
                                                         setSelectedVal(sv);
-
-
-                                                        setSelected((val: any) => {
-                                                            let temp = [...val];
-                                                            temp.splice(existing,1)
-                                                            return temp;
-                                                        });
+                                                        setSelected(sv);
 
                                                         // onSelect()
                                                     }else{
                                                         if(save === 'value'){
-                                                            setSelected((val: any) => {
-                                                                let temp = [...new Set([...val,value])];
-                                                                return temp;
-                                                            })
+                                                            let temp = [...new Set([...val,value])];
+                                                            setSelected(temp);
                                                         }else{
-                                                            setSelected((val: any) => {
-                                                                let temp = [...new Set([...val,key])];
-                                                                return temp;
-                                                            })
+                                                            let temp = [...new Set([...val,key])];
+                                                            setSelected(temp);
                                                         }
 
-                                                        setSelectedVal((val: any )=> {
-                                                            let temp = [...new Set([...val,value])];
-                                                            return temp;
-                                                        })
+                                                        let tempVal = [...new Set([...val,value])];
+                                                        setSelectedVal(tempVal);
 
 
                                                         // onSelect()
