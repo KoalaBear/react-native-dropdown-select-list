@@ -17,36 +17,46 @@ import {MultipleSelectListProps} from "..";
 
 type L1Keys = { key?: any; value?: any; disabled?: boolean | undefined }
 
+function findValueByKey(keyToFind: any, data: any) {
+    const foundItem = data.find(item => item.key === keyToFind);
+
+    if (foundItem) {
+        return foundItem.value;
+    } else {
+        return 'Key not found'; // Or you can return null, throw an error, etc. based on your use case
+    }
+}
+
 const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
-        fontFamily,
-        setSelected,
-        placeholder,
-        boxStyles,
-        inputStyles,
-        dropdownStyles,
-        dropdownItemStyles,
-        dropdownTextStyles,
-        maxHeight,
-        data,
-        defaultOptions,
-        searchicon = false,
-        arrowicon = false,
-        closeicon = false,
-        search = true,
-        searchPlaceholder = "search",
-        onSelect = () => {},
-        label,
-        notFoundText = "No data found",
-        disabledItemStyles,
-        disabledTextStyles,
-        disabledCheckBoxStyles,
-        labelStyles,
-        badgeStyles,
-        badgeTextStyles,
-        checkBoxStyles,
-        save = 'key',
-        dropdownShown = false
-    }) => {
+                                                                   fontFamily,
+                                                                   setSelected,
+                                                                   placeholder,
+                                                                   boxStyles,
+                                                                   inputStyles,
+                                                                   dropdownStyles,
+                                                                   dropdownItemStyles,
+                                                                   dropdownTextStyles,
+                                                                   maxHeight,
+                                                                   data,
+                                                                   defaultOptions,
+                                                                   searchicon = false,
+                                                                   arrowicon = false,
+                                                                   closeicon = false,
+                                                                   search = true,
+                                                                   searchPlaceholder = "search",
+                                                                   onSelect = () => {},
+                                                                   label,
+                                                                   notFoundText = "No data found",
+                                                                   disabledItemStyles,
+                                                                   disabledTextStyles,
+                                                                   disabledCheckBoxStyles,
+                                                                   labelStyles,
+                                                                   badgeStyles,
+                                                                   badgeTextStyles,
+                                                                   checkBoxStyles,
+                                                                   save = 'key',
+                                                                   dropdownShown = false
+                                                               }) => {
 
     const oldOption = React.useRef(null)
     const [_firstRender,_setFirstRender] = React.useState<boolean>(true);
@@ -85,13 +95,13 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
 
     React.useEffect(() => {
         setFilteredData(data);
-      },[data])
+    },[data])
 
 
     React.useEffect(() => {
         if(_firstRender){
-          _setFirstRender(false);
-          return;
+            _setFirstRender(false);
+            return;
         }
         onSelect()
 
@@ -124,19 +134,19 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
         <View>
             {
                 (dropdown && search)
-                ?
+                    ?
                     <View style={[styles.wrapper,boxStyles]}>
                         <View style={{flexDirection:'row',alignItems:'center',flex:1}}>
                             {
                                 (!searchicon)
-                                ?
-                                <Image
-                                    source={require('../assets/images/search.png')}
-                                    resizeMode='contain'
-                                    style={{width:20,height:20,marginRight:7}}
-                                />
-                                :
-                                searchicon
+                                    ?
+                                    <Image
+                                        source={require('../assets/images/search.png')}
+                                        resizeMode='contain'
+                                        style={{width:20,height:20,marginRight:7}}
+                                    />
+                                    :
+                                    searchicon
                             }
 
                             <TextInput
@@ -151,217 +161,216 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                                 }}
                                 style={[{padding:0,height:20,flex:1,fontFamily},inputStyles]}
                             />
-                                <TouchableOpacity onPress={() => {
-                                    slideup()
-                                    // setTimeout(() => setFilteredData(data), 800)
-                                }} >
-                                    {
-                                        (!closeicon)
+                            <TouchableOpacity onPress={() => {
+                                slideup()
+                                // setTimeout(() => setFilteredData(data), 800)
+                            }} >
+                                {
+                                    (!closeicon)
                                         ?
-                                            <Image
-                                                source={require('../assets/images/close.png')}
-                                                resizeMode='contain'
-                                                style={{width:17,height:17}}
-                                            />
+                                        <Image
+                                            source={require('../assets/images/close.png')}
+                                            resizeMode='contain'
+                                            style={{width:17,height:17}}
+                                        />
                                         :
-                                            closeicon
-                                    }
-                                </TouchableOpacity>
+                                        closeicon
+                                }
+                            </TouchableOpacity>
 
 
                         </View>
 
                     </View>
-                :
+                    :
 
-                (selectedval?.length > 0 )
+                    (selectedval?.length > 0 )
 
-                ?
-                    <TouchableOpacity style={[styles.wrapper,boxStyles]} onPress={() => { if(!dropdown){ Keyboard.dismiss(); slidedown() }else{ slideup() } }} >
-                        <View>
-                            <Text style={[{fontWeight:'600',fontFamily},labelStyles]}>{ label }</Text>
-                            <View style={{flexDirection:'row',marginBottom:8,flexWrap:'wrap'}}>
-                                {
-                                    selectedval?.map((item,index) => {
-                                        return (
-                                            <View key={index} style={[{backgroundColor:'gray',paddingHorizontal:20,paddingVertical:5,borderRadius:50,marginRight:10,marginTop:10}, badgeStyles]}>
-                                                <Text style={[{color:'white',fontSize:12,fontFamily}, badgeTextStyles]}>{item}</Text>
-                                            </View>
-                                        )
-                                    })
-                                }
+                        ?
+                        <TouchableOpacity style={[styles.wrapper,boxStyles]} onPress={() => { if(!dropdown){ Keyboard.dismiss(); slidedown() }else{ slideup() } }} >
+                            <View>
+                                <Text style={[{fontWeight:'600',fontFamily},labelStyles]}>{ label }</Text>
+                                <View style={{flexDirection:'row',marginBottom:8,flexWrap:'wrap'}}>
+                                    {
+                                        selectedval?.map((item,index) => {
+                                            return (
+                                                <View key={index} style={[{backgroundColor:'gray',paddingHorizontal:20,paddingVertical:5,borderRadius:50,marginRight:10,marginTop:10}, badgeStyles]}>
+                                                    <Text style={[{color:'white',fontSize:12,fontFamily}, badgeTextStyles]}>{findValueByKey(item, data)}</Text>
+                                                </View>
+                                            )
+                                        })
+                                    }
+                                </View>
                             </View>
-                        </View>
-                    </TouchableOpacity>
-                :
-                    <TouchableOpacity style={[styles.wrapper,boxStyles]} onPress={() => { if(!dropdown){ Keyboard.dismiss(); slidedown() }else{ slideup() } }}>
-                        <Text style={[{fontFamily},inputStyles]}>{ (selectedval == "") ? (placeholder) ? placeholder : 'Select option' : selectedval  }</Text>
-                        {
-                            (!arrowicon)
-                            ?
-                                <Image
-                                    source={require('../assets/images/chevron.png')}
-                                    resizeMode='contain'
-                                    style={{width:20,height:20}}
-                                />
-                            :
-                                arrowicon
-                        }
+                        </TouchableOpacity>
+                        :
+                        <TouchableOpacity style={[styles.wrapper,boxStyles]} onPress={() => { if(!dropdown){ Keyboard.dismiss(); slidedown() }else{ slideup() } }}>
+                            <Text style={[{fontFamily},inputStyles]}>{ (selectedval == "") ? (placeholder) ? placeholder : 'Select option' : selectedval  }</Text>
+                            {
+                                (!arrowicon)
+                                    ?
+                                    <Image
+                                        source={require('../assets/images/chevron.png')}
+                                        resizeMode='contain'
+                                        style={{width:20,height:20}}
+                                    />
+                                    :
+                                    arrowicon
+                            }
 
-                    </TouchableOpacity>
+                        </TouchableOpacity>
             }
 
             {
                 (dropdown)
-                ?
+                    ?
                     <Animated.View style={[{maxHeight:animatedvalue},styles.dropdown, dropdownStyles]}>
                         <View style={[{maxHeight:height}]}>
                             <ScrollView contentContainerStyle={{paddingVertical:10}} nestedScrollEnabled={true}>
 
                                 {
                                     (filtereddata.length >=  1)
-                                    ?
-                                    filtereddata.map((item: L1Keys,index: number) => {
-                                        let key = item.key ?? item.value ?? item;
-                                        let value = item.value ?? item;
-                                        let disabled = item.disabled ?? false;
-                                        if(disabled){
-                                            return(
-                                                <TouchableOpacity style={[styles.disabledoption,disabledItemStyles]} key={index}>
-                                                    <View style={[{width:15,height:15,marginRight:10,borderRadius:3,justifyContent:'center',alignItems:'center',backgroundColor:'#c4c5c6'},disabledCheckBoxStyles]}>
+                                        ?
+                                        filtereddata.map((item: L1Keys,index: number) => {
+                                            let key = item.key ?? item.value ?? item;
+                                            let value = item.value ?? item;
+                                            let disabled = item.disabled ?? false;
+                                            if(disabled){
+                                                return(
+                                                    <TouchableOpacity style={[styles.disabledoption,disabledItemStyles]} key={index}>
+                                                        <View style={[{width:15,height:15,marginRight:10,borderRadius:3,justifyContent:'center',alignItems:'center',backgroundColor:'#c4c5c6'},disabledCheckBoxStyles]}>
 
-                                                        {
-                                                            (selectedval?.includes(value))
-                                                            ?
+                                                            {
+                                                                (selectedval?.includes(value))
+                                                                    ?
 
-                                                                <Image
-                                                                    key={index}
-                                                                    source={require('../assets/images/check.png')}
-                                                                    resizeMode='contain'
-                                                                    style={[{width:8,height:8,paddingLeft:7}]}
-                                                                />
+                                                                    <Image
+                                                                        key={index}
+                                                                        source={require('../assets/images/check.png')}
+                                                                        resizeMode='contain'
+                                                                        style={[{width:8,height:8,paddingLeft:7}]}
+                                                                    />
 
-                                                            :
-                                                            null
+                                                                    :
+                                                                    null
 
-                                                        }
-                                                    </View>
-                                                    <Text style={[{fontFamily,color:'#c4c5c6'},disabledTextStyles]}>{value}</Text>
-                                                </TouchableOpacity>
-                                            )
-                                        }else{
-                                            return(
-                                                <TouchableOpacity style={[styles.option,dropdownItemStyles]} key={index} onPress={ () => {
-
-
-                                                    let existing = selectedval?.indexOf(value)
+                                                            }
+                                                        </View>
+                                                        <Text style={[{fontFamily,color:'#c4c5c6'},disabledTextStyles]}>{value}</Text>
+                                                    </TouchableOpacity>
+                                                )
+                                            }else{
+                                                return(
+                                                    <TouchableOpacity style={[styles.option,dropdownItemStyles]} key={index} onPress={ () => {
 
 
-                                                    // console.log(existing);
+                                                        let existing = selectedval?.indexOf(key)
 
-                                                    if(existing != -1  && existing != undefined){
 
-                                                        let sv = [...selectedval];
-                                                        sv.splice(existing,1)
-                                                        setSelectedVal(sv);
-                                                        setSelected(sv);
+                                                        // console.log(existing);
 
-                                                        // onSelect()
-                                                    }else{
-                                                        if(save === 'value'){
-                                                            let temp = [...new Set([...val,value])];
-                                                            setSelected(temp);
+                                                        if(existing != -1  && existing != undefined){
+
+                                                            let sv = [...selectedval];
+                                                            sv.splice(existing,1)
+                                                            setSelectedVal(sv);
+                                                            setSelected(sv);
+
+                                                            // onSelect()
                                                         }else{
-                                                            let temp = [...new Set([...val,key])];
-                                                            setSelected(temp);
-                                                        }
-
-                                                        let tempVal = [...new Set([...val,value])];
-                                                        setSelectedVal(tempVal);
-
-
-                                                        // onSelect()
-                                                    }
-
+                                                            if(save === 'value'){
+                                                                let temp = [...new Set([...selectedval,value])];
+                                                                setSelected(temp);
+                                                            }else{
+                                                                let temp = [...new Set([...selectedval,key])];
+                                                                setSelected(temp);
+                                                            }
+                                                            let tempVal = [...new Set([...selectedval,key])];
+                                                            setSelectedVal(tempVal);
 
 
-                                                }}>
-                                                    <View style={[{width:15,height:15,borderWidth:1,marginRight:10,borderColor:'gray',borderRadius:3,justifyContent:'center',alignItems:'center'},checkBoxStyles]}>
-
-                                                        {
-                                                            (selectedval?.includes(value))
-                                                            ?
-
-                                                                <Image
-                                                                    key={index}
-                                                                    source={require('../assets/images/check.png')}
-                                                                    resizeMode='contain'
-                                                                    style={{width:8,height:8,paddingLeft:7}}
-                                                                />
-
-                                                            :
-                                                            null
-
+                                                            // onSelect()
                                                         }
 
 
 
+                                                    }}>
+                                                        <View style={[{width:15,height:15,borderWidth:1,marginRight:10,borderColor:'gray',borderRadius:3,justifyContent:'center',alignItems:'center'},checkBoxStyles]}>
 
-                                                    </View>
-                                                    <Text style={[{fontFamily},dropdownTextStyles]}>{value}</Text>
-                                                </TouchableOpacity>
-                                            )
-                                        }
+                                                            {
+                                                                (selectedval?.includes(value))
+                                                                    ?
 
-                                    })
-                                    :
-                                    <TouchableOpacity style={[styles.option,dropdownItemStyles]} onPress={ () => {
-                                        setSelected(undefined)
-                                        setSelectedVal("")
-                                        slideup()
-                                        setTimeout(() => setFilteredData(data), 800)
-                                    }}>
-                                        <Text style={dropdownTextStyles}>{notFoundText}</Text>
-                                    </TouchableOpacity>
+                                                                    <Image
+                                                                        key={index}
+                                                                        source={require('../assets/images/check.png')}
+                                                                        resizeMode='contain'
+                                                                        style={{width:8,height:8,paddingLeft:7}}
+                                                                    />
+
+                                                                    :
+                                                                    null
+
+                                                            }
+
+
+
+
+                                                        </View>
+                                                        <Text style={[{fontFamily},dropdownTextStyles]}>{value}</Text>
+                                                    </TouchableOpacity>
+                                                )
+                                            }
+
+                                        })
+                                        :
+                                        <TouchableOpacity style={[styles.option,dropdownItemStyles]} onPress={ () => {
+                                            setSelected(undefined)
+                                            setSelectedVal("")
+                                            slideup()
+                                            setTimeout(() => setFilteredData(data), 800)
+                                        }}>
+                                            <Text style={dropdownTextStyles}>{notFoundText}</Text>
+                                        </TouchableOpacity>
                                 }
 
 
 
                             </ScrollView>
 
-                                {
-                                    (selectedval?.length > 0)
+                            {
+                                (selectedval?.length > 0)
                                     ?
-                                        <Pressable>
-                                            <View style={{flexDirection:'row', justifyContent:'space-between',alignItems:'center',paddingLeft:20}}>
-                                                <Text style={{marginRight:20,fontWeight:'600',fontFamily}}>Selected</Text>
-                                                <View style={{height: 1, flex: 1, backgroundColor: 'gray'}} />
-                                            </View>
-                                            <View style={{flexDirection:'row',paddingHorizontal:20,marginBottom:20,flexWrap:'wrap'}}>
+                                    <Pressable>
+                                        <View style={{flexDirection:'row', justifyContent:'space-between',alignItems:'center',paddingLeft:20}}>
+                                            <Text style={{marginRight:20,fontWeight:'600',fontFamily}}>Selected</Text>
+                                            <View style={{height: 1, flex: 1, backgroundColor: 'gray'}} />
+                                        </View>
+                                        <View style={{flexDirection:'row',paddingHorizontal:20,marginBottom:20,flexWrap:'wrap'}}>
 
-                                                {
-                                                    selectedval?.map((item,index) => {
-                                                        return (
-                                                            <View key={index} style={[{backgroundColor:'gray',paddingHorizontal:20,paddingVertical:5,borderRadius:50,marginRight:10,marginTop:10},badgeStyles]}>
-                                                                <Text style={[{color:'white',fontSize:12,fontFamily},badgeTextStyles]}>{item}</Text>
-                                                            </View>
-                                                        )
-                                                    })
-                                                }
+                                            {
+                                                selectedval?.map((item,index) => {
+                                                    return (
+                                                        <View key={index} style={[{backgroundColor:'gray',paddingHorizontal:20,paddingVertical:5,borderRadius:50,marginRight:10,marginTop:10},badgeStyles]}>
+                                                            <Text style={[{color:'white',fontSize:12,fontFamily},badgeTextStyles]}>{findValueByKey(item, data)}</Text>
+                                                        </View>
+                                                    )
+                                                })
+                                            }
 
-                                            </View>
-                                        </Pressable>
+                                        </View>
+                                    </Pressable>
                                     :
                                     null
-                                }
+                            }
 
 
 
                         </View>
 
                     </Animated.View>
-                :
-                null
+                    :
+                    null
             }
 
 
