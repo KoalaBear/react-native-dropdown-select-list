@@ -192,10 +192,10 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                                 <Text style={[{fontWeight:'600',fontFamily},labelStyles]}>{ label }</Text>
                                 <View style={{flexDirection:'row',marginBottom:8,flexWrap:'wrap'}}>
                                     {
-                                        selectedval?.map((item,index) => {
+                                        selectedval?.map((packageName,index) => {
                                             return (
                                                 <View key={index} style={[{backgroundColor:'gray',paddingHorizontal:20,paddingVertical:5,borderRadius:50,marginRight:10,marginTop:10}, badgeStyles]}>
-                                                    <Text style={[{color:'white',fontSize:12,fontFamily}, badgeTextStyles]}>{findValueByKey(item, data)}</Text>
+                                                    <Text style={[{color:'white',fontSize:12,fontFamily}, badgeTextStyles]}>{findValueByKey(packageName, data)}</Text>
                                                 </View>
                                             )
                                         })
@@ -298,7 +298,7 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                                                         <View style={[{width:15,height:15,borderWidth:1,marginRight:10,borderColor:'gray',borderRadius:3,justifyContent:'center',alignItems:'center'},checkBoxStyles]}>
 
                                                             {
-                                                                (selectedval?.includes(value))
+                                                                (selectedval?.includes(key))
                                                                     ?
 
                                                                     <Image
@@ -349,10 +349,10 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                                         <View style={{flexDirection:'row',paddingHorizontal:20,marginBottom:20,flexWrap:'wrap'}}>
 
                                             {
-                                                selectedval?.map((item,index) => {
+                                                selectedval?.map((packageName,index) => {
                                                     return (
                                                         <View key={index} style={[{backgroundColor:'gray',paddingHorizontal:20,paddingVertical:5,borderRadius:50,marginRight:10,marginTop:10},badgeStyles]}>
-                                                            <Text style={[{color:'white',fontSize:12,fontFamily},badgeTextStyles]}>{findValueByKey(item, data)}</Text>
+                                                            <Text style={[{color:'white',fontSize:12,fontFamily},badgeTextStyles]}>{findValueByKey(packageName, data)}</Text>
                                                         </View>
                                                     )
                                                 })
