@@ -260,6 +260,8 @@ export interface MultipleSelectListProps {
      * Additional styles for label
      */
     labelStyles?: TextStyle,
+    selectedLabelStyle?: TextStyle,
+    placeholderTextColor: string,
 }
 
 declare class MultipleSelectList extends React.Component<MultipleSelectListProps> {

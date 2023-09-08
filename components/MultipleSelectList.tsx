@@ -55,6 +55,8 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                                                                    badgeTextStyles,
                                                                    checkBoxStyles,
                                                                    imageStyle,
+                                                                   selectedLabelStyle,
+                                                                   placeholderTextColor="white",
                                                                    save = 'key',
                                                                    dropdownShown = false
                                                                }) => {
@@ -160,6 +162,7 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                                     });
                                     setFilteredData(result)
                                 }}
+                                placeholderTextColor={placeholderTextColor}
                                 style={[{padding:0,height:20,flex:1,fontFamily},inputStyles]}
                             />
                             <TouchableOpacity onPress={() => {
@@ -344,7 +347,7 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                                     ?
                                     <Pressable>
                                         <View style={{flexDirection:'row', justifyContent:'space-between',alignItems:'center',paddingLeft:20}}>
-                                            <Text style={{marginRight:20,fontWeight:'600',fontFamily}}>Selected</Text>
+                                            <Text style={[{marginRight:20,fontWeight:'600',fontFamily}, selectedLabelStyle]}>Selected</Text>
                                             <View style={{height: 1, flex: 1, backgroundColor: 'gray'}} />
                                         </View>
                                         <View style={{flexDirection:'row',paddingHorizontal:20,marginBottom:20,flexWrap:'wrap'}}>
