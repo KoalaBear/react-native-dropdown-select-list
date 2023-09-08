@@ -43,10 +43,10 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                                                                    arrowicon = false,
                                                                    closeicon = false,
                                                                    search = true,
-                                                                   searchPlaceholder = "search",
+                                                                   searchPlaceholder = "Search..",
                                                                    onSelect = () => {},
                                                                    label,
-                                                                   notFoundText = "No data found",
+                                                                   notFoundText = "No Data Found",
                                                                    disabledItemStyles,
                                                                    disabledTextStyles,
                                                                    disabledCheckBoxStyles,
@@ -54,6 +54,7 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                                                                    badgeStyles,
                                                                    badgeTextStyles,
                                                                    checkBoxStyles,
+                                                                   imageStyle,
                                                                    save = 'key',
                                                                    dropdownShown = false
                                                                }) => {
@@ -143,7 +144,7 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                                     <Image
                                         source={require('../assets/images/search.png')}
                                         resizeMode='contain'
-                                        style={{width:20,height:20,marginRight:7}}
+                                        style={[{width:20,height:20,marginRight:7}, imageStyle]}
                                     />
                                     :
                                     searchicon
@@ -171,7 +172,7 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                                         <Image
                                             source={require('../assets/images/close.png')}
                                             resizeMode='contain'
-                                            style={{width:17,height:17}}
+                                            style={[{width:17,height:17}, imageStyle]}
                                         />
                                         :
                                         closeicon
@@ -305,7 +306,7 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                                                                         key={index}
                                                                         source={require('../assets/images/check.png')}
                                                                         resizeMode='contain'
-                                                                        style={{width:8,height:8,paddingLeft:7}}
+                                                                        style={[{width:8,height:8,paddingLeft:7}, imageStyle]}
                                                                     />
 
                                                                     :
