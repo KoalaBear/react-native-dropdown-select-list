@@ -28,7 +28,7 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
         dropdownTextStyles,
         maxHeight,
         data,
-        defaultOptions,
+        defaultOptions = [],
         searchicon = false,
         arrowicon = false,
         closeicon = false,

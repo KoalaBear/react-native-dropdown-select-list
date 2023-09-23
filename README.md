@@ -218,7 +218,7 @@ const App = () => {
       onSelect={() => alert(selected)}
       setSelected={(val) => setSelected(val)} 
       data={data} 
-      save="value"
+      save="key"
       defaultOptions={[ {key:'1', value:'Jammu & Kashmir' }, {key:'4', value:'Goa' }]}   //default selected options
     />
   )
