@@ -28,7 +28,7 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
         dropdownTextStyles,
         maxHeight,
         data,
-        defaultOptions = [],
+        defaultOptions,
         searchicon = false,
         arrowicon = false,
         closeicon = false,
@@ -98,8 +98,8 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
     },[selectedval])
 
     React.useEffect(() => {
-        let defaultOptionsKeys=defaultOptions.map(({key}) => {return key});
-        let defaultOptionsValues=defaultOptions.map(({value}) => {return value});
+        let defaultOptionsKeys=defaultOptions?defaultOptions.map(({key}) => {return key}):[];
+        let defaultOptionsValues=ddefaultOptions?efaultOptions.map(({value}) => {return value}):[];
         if(!_firstRender && defaultOptions && oldOption.current != defaultOptionsKeys ){
             oldOption.current = defaultOptionsKeys;
             if(save === 'value'){
