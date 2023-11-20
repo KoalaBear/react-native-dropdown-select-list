@@ -194,11 +194,11 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                         <TouchableOpacity style={[styles.wrapper,boxStyles]} onPress={() => { if(!dropdown){ Keyboard.dismiss(); slidedown() }else{ slideup() } }} >
                             <View>
                                 <Text style={[{fontWeight:'600',fontFamily},labelStyles]}>{ label }</Text>
-                                <View style={{flexDirection:'row',marginBottom:8,flexWrap:'wrap'}}>
+                                <View style={{flexDirection:'row',flexWrap:'wrap'}}>
                                     {
                                         selectedval?.map((packageName,index) => {
                                             return (
-                                                <View key={index} style={[{backgroundColor:'gray',paddingHorizontal:20,paddingVertical:5,borderRadius:50,marginRight:10,marginTop:10}, badgeStyles]}>
+                                                <View key={index} style={[{backgroundColor:'gray',paddingHorizontal:15,paddingVertical:5,borderRadius:50,marginRight:5,marginTop:5}, badgeStyles]}>
                                                     <Text style={[{color:'white',fontSize:12,fontFamily}, badgeTextStyles]}>{findValueByKey(packageName, data)}</Text>
                                                 </View>
                                             )
