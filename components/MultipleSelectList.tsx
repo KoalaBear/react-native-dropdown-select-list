@@ -98,11 +98,27 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
     },[selectedval])
 
     React.useEffect(() => {
-        if(defaultOptions && _firstRender){
-            setSelected(defaultOptions);
-            setSelectedVal(defaultOptions);
+        let defaultOptionsKeys=defaultOptions?defaultOptions.map(({key}) => {return key}):[];
+        let defaultOptionsValues=ddefaultOptions?efaultOptions.map(({value}) => {return value}):[];
+        if(!_firstRender && defaultOptions && oldOption.current != defaultOptionsKeys ){
+            oldOption.current = defaultOptionsKeys;
+            if(save === 'value'){
+                setSelected(defaultOptionsValues);
+            }else{
+                setSelected(defaultOptionsKeys);
+            }
+            setSelectedVal(defaultOptionsValues);
         }
-    })
+        if(defaultOptions && _firstRender && defaultOptionsKeys != undefined){  
+            oldOption.current = defaultOptionsKeys;
+            if(save === 'value'){
+                setSelected(defaultOptionsValues);
+            }else{
+                setSelected(defaultOptionsKeys);
+            }
+            setSelectedVal(defaultOptionsValues);
+        }  
+    },[defaultOptions])
 
     React.useEffect(() => {
         if(!_firstRender){
