@@ -188,28 +188,29 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
                     </View>
                     :
 
-                    (selectedval?.length > 0 )
-
-                        ?
-                        <TouchableOpacity style={[styles.wrapper,boxStyles]} onPress={() => { if(!dropdown){ Keyboard.dismiss(); slidedown() }else{ slideup() } }} >
-                            <View>
-                                <Text style={[{fontWeight:'600',fontFamily},labelStyles]}>{ label }</Text>
-                                <View style={{flexDirection:'row',flexWrap:'wrap'}}>
-                                    {
-                                        selectedval?.map((packageName,index) => {
-                                            return (
-                                                <View key={index} style={[{backgroundColor:'gray',paddingHorizontal:15,paddingVertical:5,borderRadius:50,marginRight:5,marginTop:5}, badgeStyles]}>
-                                                    <Text style={[{color:'white',fontSize:12,fontFamily}, badgeTextStyles]}>{findValueByKey(packageName, data)}</Text>
-                                                </View>
-                                            )
-                                        })
-                                    }
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                        :
+                    // (selectedval?.length > 0 )
+                    //
+                    //     ?
+                    //     <TouchableOpacity style={[styles.wrapper,boxStyles]} onPress={() => { if(!dropdown){ Keyboard.dismiss(); slidedown() }else{ slideup() } }} >
+                    //         <View>
+                    //             <Text style={[{fontWeight:'600',fontFamily},labelStyles]}>{ label }</Text>
+                    //             <View style={{flexDirection:'row',flexWrap:'wrap'}}>
+                    //                 {
+                    //                     selectedval?.map((packageName,index) => {
+                    //                         return (
+                    //                             <View key={index} style={[{backgroundColor:'gray',paddingHorizontal:15,paddingVertical:5,borderRadius:50,marginRight:5,marginTop:5}, badgeStyles]}>
+                    //                                 <Text style={[{color:'white',fontSize:12,fontFamily}, badgeTextStyles]}>{findValueByKey(packageName, data)}</Text>
+                    //                             </View>
+                    //                         )
+                    //                     })
+                    //                 }
+                    //             </View>
+                    //         </View>
+                    //     </TouchableOpacity>
+                    //     :
                         <TouchableOpacity style={[styles.wrapper,boxStyles]} onPress={() => { if(!dropdown){ Keyboard.dismiss(); slidedown() }else{ slideup() } }}>
-                            <Text style={[{fontFamily},inputStyles]}>{ (selectedval == "") ? (placeholder) ? placeholder : 'Select option' : selectedval  }</Text>
+                            {/*<Text style={[{fontFamily},inputStyles]}>{ (selectedval == "") ? (placeholder) ? placeholder : 'Select option' : selectedval  }</Text>*/}
+                            <Text style={[{fontFamily},inputStyles]}>{  (placeholder) ? placeholder : 'Select option'  }</Text>
                             {
                                 (!arrowicon)
                                     ?
